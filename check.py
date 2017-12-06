@@ -25,22 +25,16 @@ def connect(query):
     try:
         # read connection parameters
         db_params = config(section='galera')
-
         # connect to the PostgreSQL server
         conn = mysql.connector.connect(**db_params)
-
         # create a cursor
         cur = conn.cursor()
-
         #get node status
         cur.execute(query)
-
         #save status to variable
         result = cur.fetchone()
-
         # close the communication with the PostgreSQL
         cur.close()
-
         return result
 
     except mysql.connector.Error as error:
