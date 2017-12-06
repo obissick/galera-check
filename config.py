@@ -14,6 +14,8 @@ def config(filename=os.path.dirname(__file__)+'/database.ini', section='galera')
         params = parser.items(section)
         for param in params:
             db[param[0]] = param[1]
+
+        print(param)
     else:
         raise Exception('Section {0} not found in the {1} file'.format(section, filename))
 
