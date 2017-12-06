@@ -48,7 +48,7 @@ def run():
 
     wsrep_status = connect("SHOW STATUS LIKE 'wsrep_local_state';")
 
-    if wsrep_status[0] == "4" or wsrep_status[0] == 2 and opt_params["options"]["available_when_donor"] == 1:
+    if wsrep_status[0] == "4" or wsrep_status[0] == "2" and **opt_params["options"]["available_when_donor"] == 1:
         if opt_params["options"]["available_when_readonly"] == 0:
             read_only = connect("SHOW GLOBAL VARIABLES LIKE 'read_only';")
             if read_only[0] == "ON":
