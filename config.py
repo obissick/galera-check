@@ -8,7 +8,7 @@ def config(filename=os.path.dirname(__file__)+'/database.ini', section='galera')
     # read config file
     parser.read(filename)
 
-    # get section, default to postgresql
+    # get section, default to galera
     db = {}
     if parser.has_section(section):
         params = parser.items(section)
