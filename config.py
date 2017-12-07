@@ -2,7 +2,7 @@
 from configparser import ConfigParser
 import os
 
-def config(filename=os.path.dirname(__file__)+'/database.ini', section='galera'):
+def config(filename=os.path.dirname(__file__)+'/database.ini', section):
     # create a parser
     parser = ConfigParser()
     # read config file
@@ -15,7 +15,7 @@ def config(filename=os.path.dirname(__file__)+'/database.ini', section='galera')
         for param in params:
             db[param[0]] = param[1]
 
-        print(param)
+        print(db)
     else:
         raise Exception('Section {0} not found in the {1} file'.format(section, filename))
 
