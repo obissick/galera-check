@@ -25,7 +25,7 @@ def connect(query):
     try:
         # read connection parameters
         db_params = config(section='galera')
-        # connect to the PostgreSQL server
+        # connect to the MySQL server
         conn = mysql.connector.connect(**db_params)
         # create a cursor
         cur = conn.cursor()
