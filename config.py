@@ -2,7 +2,7 @@
 from configparser import ConfigParser
 import os
 
-def config(filename=os.path.dirname(__file__)+'/database.ini', section):
+def config(filename=os.path.dirname(__file__)+'/database.ini', section='galera'):
     # create a parser
     parser = ConfigParser()
     # read config file
