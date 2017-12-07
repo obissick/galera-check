@@ -33,7 +33,7 @@ def connect(query):
         cur.execute(query)
         #save status to variable
         result = cur.fetchone()
-        # close the communication with the PostgreSQL
+        # close the communication with the MySQL
         cur.close()
         return result
 
