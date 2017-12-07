@@ -48,10 +48,10 @@ def run():
 
     wsrep_status = connect("SHOW STATUS LIKE 'wsrep_local_state';")
 
-    if wsrep_status[0] == "4" or wsrep_status[0] == "2" and opt_params["available_when_donor"] == "1":
+    if wsrep_status[1] == "4" or wsrep_status[1] == "2" and opt_params["available_when_donor"] == "1":
         if opt_params["available_when_readonly"] == 0:
             read_only = connect("SHOW GLOBAL VARIABLES LIKE 'read_only';")
-            if read_only[0] == "ON":
+            if read_only[1] == "ON":
                 httpOut("HTTP/1.1 503 Service Unavailable\r\n","43","Galera Cluster Node is read-only.\r\n")
 
         #if status = r then send OK status to HAProxy
