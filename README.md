@@ -1,6 +1,6 @@
 ## galera-check ##
 
-Script to make a proxy (ie HAProxy) capable of monitoring PostgreSQL BDR Cluster nodes properly.
+Script to make a proxy (ie HAProxy) capable of monitoring Galera Cluster nodes properly.
 
 ## Requirements ##
 * xinetd
