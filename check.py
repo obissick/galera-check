@@ -9,7 +9,7 @@ import os, sys
 def sleep(time):
     subprocess.call(["sleep "+time],shell=True)
 
-def httpOut(message,length,out):
+def httpOut(message,length,out,exit_code):
     sys.stdout.write(message)
     sys.stdout.write("Content-Type: text/plain\r\n")
     sys.stdout.write("Connection: close\r\n")
@@ -17,7 +17,7 @@ def httpOut(message,length,out):
     sys.stdout.write("\r\n")
     sys.stdout.write(out)
     sleep("0.1")
-    exit(0)
+    exit(exit_code)
 
 def connect(query):
     #""" Connect to the MySQL database server """
@@ -52,16 +52,16 @@ def run():
         if opt_params["available_when_readonly"] == 0:
             read_only = connect("SHOW GLOBAL VARIABLES LIKE 'read_only';")
             if read_only[1] == "ON":
-                httpOut("HTTP/1.1 503 Service Unavailable\r\n","43","Galera Cluster Node is read-only.\r\n")
+                httpOut("HTTP/1.1 503 Service Unavailable\r\n","43","Galera Cluster Node is read-only.\r\n",1)
 
         #if status = r then send OK status to HAProxy
         # Shell return-code is 0
-        httpOut("HTTP/1.1 200 Galera Node is synced.\r\n", "40" ,"Galera Node is ready.\r\n")
+        httpOut("HTTP/1.1 200 Galera Node is synced.\r\n", "40" ,"Galera Node is ready.\r\n",0)
 
     else:
         #else node in a not in a ready state.
         # Shell return-code is 1
-        httpOut("HTTP/1.1 503 Galera Node is not synced.\r\n", "44" ,"Galera Node is not ready.\r\n")
+        httpOut("HTTP/1.1 503 Galera Node is not synced.\r\n", "44" ,"Galera Node is not ready.\r\n",1)
 
 if __name__ == '__main__':
     run()
